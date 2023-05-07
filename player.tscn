@@ -11,6 +11,7 @@ size = Vector2(135, 135)
 radius = 64.0312
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.75, 0.75)
 collision_mask = 4
 script = ExtResource("1_uj1hw")
 

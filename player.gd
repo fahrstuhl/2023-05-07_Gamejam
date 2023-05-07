@@ -93,6 +93,7 @@ func _physics_process(delta):
 		if shoot_time == 0:
 			emit_signal("spawn_rocket", $Weapon/Muzzle.global_position, aim_angle, PLAYER_ID)
 			shoot_time = SHOOT_COOLDOWN
+			Input.start_joy_vibration(PLAYER_ID, 0.4, 0, 0.2)
 
 	if shoot_time > 0:
 		shoot_time -= 1

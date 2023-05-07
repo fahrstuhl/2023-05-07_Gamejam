@@ -17,10 +17,11 @@ func _ready():
 	update_scores()
 	
 func spawn_players():
+	var spawnpoints = $Level/Spawns.get_children()
 	for ID in Input.get_connected_joypads():
 		var player = PLAYER.instantiate()
 		player.PLAYER_ID = ID
-		player.global_position = Vector2(600,600)
+		player.global_position = spawnpoints[player.PLAYER_ID].global_position
 		var status = STATUS.instantiate()
 		status.PLAYER_ID = ID
 		player.connect("spawn_rocket", spawn_rocket)
@@ -54,6 +55,7 @@ func hit_player_by(hit_id, by_id):
 	scores[hit_id]["deaths"] += 1
 	if hit_id != by_id:
 		scores[by_id]["kills"] += 1
+	Input.start_joy_vibration(hit_id, 0, 0.5, 0.3)
 	update_scores()
 
 func update_scores():

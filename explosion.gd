@@ -5,7 +5,7 @@ signal hit_rocket
 
 var PLAYER_ID := -1
 var ground := false
-var DANGER_TIME := 0.25
+var DANGER_TIME := 0.1
 
 func _ready():
 	$Danger.one_shot = true
