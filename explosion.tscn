@@ -1,0 +1,63 @@
+[gd_scene load_steps=13 format=3 uid="uid://bfk3koc1ox20l"]
+
+[ext_resource type="Script" path="res://explosion.gd" id="1_7h0cv"]
+[ext_resource type="Texture2D" uid="uid://du2xevg1scn3p" path="res://assets/Regular explosion/regularExplosion00.png" id="2_ocwtw"]
+[ext_resource type="Texture2D" uid="uid://nhs86wr6ss78" path="res://assets/Regular explosion/regularExplosion01.png" id="3_pi6vv"]
+[ext_resource type="Texture2D" uid="uid://bi1qxymb7fk0q" path="res://assets/Regular explosion/regularExplosion02.png" id="4_i3phq"]
+[ext_resource type="Texture2D" uid="uid://bwlmu8oxwej3w" path="res://assets/Regular explosion/regularExplosion03.png" id="5_88obo"]
+[ext_resource type="Texture2D" uid="uid://b7tmbl2pts410" path="res://assets/Regular explosion/regularExplosion04.png" id="6_n8clj"]
+[ext_resource type="Texture2D" uid="uid://bxtkahvc1c8u7" path="res://assets/Regular explosion/regularExplosion05.png" id="7_5426d"]
+[ext_resource type="Texture2D" uid="uid://dlux4jit42btt" path="res://assets/Regular explosion/regularExplosion06.png" id="8_1d2te"]
+[ext_resource type="Texture2D" uid="uid://cq136dpqn72it" path="res://assets/Regular explosion/regularExplosion07.png" id="9_4cfej"]
+[ext_resource type="Texture2D" uid="uid://dwukxr03s5hlf" path="res://assets/Regular explosion/regularExplosion08.png" id="10_8htn7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pxvar"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("2_ocwtw")
+}, {
+"duration": 1.5,
+"texture": ExtResource("3_pi6vv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i3phq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_88obo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_n8clj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5426d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1d2te")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4cfej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_8htn7")
+}],
+"loop": false,
+"name": &"aerial",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_niri7"]
+radius = 92.0
+
+[node name="explosion" type="Area2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_7h0cv")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_pxvar")
+animation = &"aerial"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_niri7")
