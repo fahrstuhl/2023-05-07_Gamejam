@@ -4,11 +4,11 @@ class_name Player
 signal spawn_rocket
 
 var PLAYER_ID: int = -1 
-const SPEED = 600.0
+const SPEED = 1000.0
 const JUMP_BUFFER_MAX = 10
 const COYOTE_TIME_MAX = 10
 const SHOOT_COOLDOWN = 30
-const MAX_JUMP_HEIGHT = int(4.5*Constants.TILE_SIZE)
+const MAX_JUMP_HEIGHT = int(6.5*Constants.TILE_SIZE)
 const MIN_JUMP_HEIGHT = int(1.5*Constants.TILE_SIZE)
 const MAX_RISE_TIME = 0.5
 const MAX_JUMP_PRESSED_TIME = 15
@@ -27,7 +27,6 @@ var shoot_time = 0
 
 func _ready():
 	$ContactBox.connect("body_entered", _on_body_entered)
-	var sprite
 	$Sprite.texture = Constants.sprites[PLAYER_ID]
 
 func _on_body_entered(body):

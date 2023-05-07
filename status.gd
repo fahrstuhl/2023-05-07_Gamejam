@@ -3,6 +3,15 @@ extends Control
 
 var PLAYER_ID = -1
 
-# Called when the node enters the scene tree for the first time.
+const TEMPLATE = """
+[font_size=64][color=green]{kills}[/color]
+[color=red]{deaths}[/color][/font_size]
+"""
+
+var score: Dictionary:
+	set(value):
+		score = value
+		$Content/Text.text = TEMPLATE.format(score)
+
 func _ready():
-	$Label.text = "Player: {0}".format([PLAYER_ID+1])
+	$Content/Sprite.texture = Constants.sprites[PLAYER_ID]

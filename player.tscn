@@ -25,7 +25,7 @@ position = Vector2(0, -84)
 texture = ExtResource("2_qcuyx")
 
 [node name="Muzzle" type="Marker2D" parent="Weapon"]
-position = Vector2(0, -84)
+position = Vector2(0, -110)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n1l3k")

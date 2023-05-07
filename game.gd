@@ -9,11 +9,12 @@ var STATUS = preload("res://status.tscn")
 var ROCKET = preload("res://rocket.tscn")
 var EXPLOSION = preload("res://explosion.tscn")
 
-var score = {}
+var scores = {}
 
 func _ready():
 	print("Joypads: ", Input.get_connected_joypads())
 	spawn_players()
+	update_scores()
 	
 func spawn_players():
 	for ID in Input.get_connected_joypads():
@@ -23,6 +24,7 @@ func spawn_players():
 		var status = STATUS.instantiate()
 		status.PLAYER_ID = ID
 		player.connect("spawn_rocket", spawn_rocket)
+		scores[player.PLAYER_ID] = {"kills": 0, "deaths": 0}
 		$Level/Players.add_child(player)
 		$Interface/PlayerStatus.add_child(status)
 
@@ -49,6 +51,18 @@ func spawn_explosion(location, id):
 
 func hit_player_by(hit_id, by_id):
 	print("Player {0} hit by player {1}".format([hit_id, by_id]))
+	scores[hit_id]["deaths"] += 1
+	if hit_id != by_id:
+		scores[by_id]["kills"] += 1
+	update_scores()
+
+func update_scores():
+	var ids = []
+	for player in $Level/Players.get_children():
+		ids.append(player.PLAYER_ID)
+	for score in $Interface/PlayerStatus.get_children():
+		if score.PLAYER_ID in ids:
+			score.score = scores[score.PLAYER_ID]
 
 func hit_rocket(id, rocket: Rocket):
 	print("explosion by player {0} hit rocket by player {1}".format([id, rocket.PLAYER_ID]))

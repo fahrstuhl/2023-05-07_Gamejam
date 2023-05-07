@@ -3,7 +3,7 @@ class_name Rocket
 
 signal spawn_explosion
 
-var TILES_PER_SECOND := 40
+var TILES_PER_SECOND := 80
 var speed := 0.0
 var PLAYER_ID := -1
 
