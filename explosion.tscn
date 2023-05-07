@@ -50,8 +50,9 @@ animations = [{
 radius = 92.0
 
 [node name="explosion" type="Area2D"]
+scale = Vector2(2, 2)
 collision_layer = 8
-collision_mask = 3
+collision_mask = 19
 script = ExtResource("1_7h0cv")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
@@ -61,3 +62,5 @@ animation = &"aerial"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_niri7")
+
+[node name="Danger" type="Timer" parent="."]

@@ -5,8 +5,12 @@ signal hit_rocket
 
 var PLAYER_ID := -1
 var ground := false
+var DANGER_TIME := 0.25
 
 func _ready():
+	$Danger.one_shot = true
+	$Danger.connect("timeout", disable_damage)
+	$Danger.start(DANGER_TIME)
 	$Animation.connect("animation_finished", finish)
 	connect("body_entered", check_if_hit)
 	connect("area_entered", check_if_hit)
@@ -19,8 +23,12 @@ func _ready():
 func finish():
 	queue_free()
 
+func disable_damage():
+	$CollisionShape2D.disabled = true
+
 func check_if_hit(collider: Node2D):
-	print(collider is Rocket)
+	if $Danger.is_stopped():
+		return
 	if collider.get_parent() is Player:
 		emit_signal("hit_player_by", collider.get_parent().PLAYER_ID, PLAYER_ID)
 	if collider is Rocket:

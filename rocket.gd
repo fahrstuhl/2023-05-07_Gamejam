@@ -3,7 +3,7 @@ class_name Rocket
 
 signal spawn_explosion
 
-var TILES_PER_SECOND := 5
+var TILES_PER_SECOND := 40
 var speed := 0.0
 var PLAYER_ID := -1
 
@@ -19,4 +19,3 @@ func explode():
 	print("spawn_explosion: {0}, {1}".format([global_position, PLAYER_ID]))
 	emit_signal("spawn_explosion", global_position, PLAYER_ID)
 	queue_free()
-	

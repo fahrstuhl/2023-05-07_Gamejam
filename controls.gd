@@ -27,7 +27,5 @@ func populate_controls():
 					new_event.axis_value = event.axis_value
 				new_event.device = id
 				InputMap.action_add_event(new_action, new_event)
-				print("Action: {0}, New Event: {1}, Device: {2}".format([new_action, new_event, new_event.device]))
-				print("Old Event: ", event)
 	for action in actions_to_modify:
 		InputMap.erase_action(action)

@@ -9,10 +9,11 @@ var STATUS = preload("res://status.tscn")
 var ROCKET = preload("res://rocket.tscn")
 var EXPLOSION = preload("res://explosion.tscn")
 
+var score = {}
+
 func _ready():
 	print("Joypads: ", Input.get_connected_joypads())
 	spawn_players()
-#	spawn_rockets()
 	
 func spawn_players():
 	for ID in Input.get_connected_joypads():
@@ -21,6 +22,7 @@ func spawn_players():
 		player.global_position = Vector2(600,600)
 		var status = STATUS.instantiate()
 		status.PLAYER_ID = ID
+		player.connect("spawn_rocket", spawn_rocket)
 		$Level/Players.add_child(player)
 		$Interface/PlayerStatus.add_child(status)
 
