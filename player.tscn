@@ -1,26 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://5nftvwosdmla"]
+[gd_scene load_steps=6 format=3 uid="uid://5nftvwosdmla"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_uj1hw"]
-[ext_resource type="Texture2D" uid="uid://b7n7h30qhgfpf" path="res://assets/towerDefense_tile249.png" id="2_qcuyx"]
+[ext_resource type="Texture2D" uid="uid://kvqqwqvom1qw" path="res://assets/Characters/whale.png" id="2_3ph7y"]
+[ext_resource type="Texture2D" uid="uid://dhqt82qvguahk" path="res://assets/towerDefense_tile249.png" id="2_qcuyx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1l3k"]
+size = Vector2(135, 135)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jc36o"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_pi6kr"]
+radius = 64.0312
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 2
+collision_mask = 4
 script = ExtResource("1_uj1hw")
 
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_3ph7y")
+offset = Vector2(0, -12)
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Weapon"]
+position = Vector2(0, -84)
+texture = ExtResource("2_qcuyx")
+
+[node name="Marker2D" type="Marker2D" parent="Weapon"]
+position = Vector2(0, -84)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n1l3k")
+
 [node name="ContactBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 10
 
 [node name="CollisionShape" type="CollisionShape2D" parent="ContactBox"]
 shape = SubResource("CircleShape2D_jc36o")
-
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_pi6kr")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
-[node name="Weapon" type="Sprite2D" parent="."]
-position = Vector2(252, 452)
-texture = ExtResource("2_qcuyx")

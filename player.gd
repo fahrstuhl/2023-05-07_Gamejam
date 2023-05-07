@@ -22,27 +22,11 @@ var jump_pressed = 0
 
 
 func _ready():
-	set_collision_layer_value(1, false)
-	set_collision_layer_value(2, true)
-	set_collision_mask_value(1, true)
-#	$ContactBox.monitorable = false
-	$ContactBox.set_collision_layer_value(1, false)
-	$ContactBox.set_collision_mask_value(1, false)
-	$ContactBox.set_collision_mask_value(3, true)
-	$ContactBox.set_collision_mask_value(4, true)
-	$ContactBox.connect("body_shape_entered", _on_contact)
-	
-func _on_contact(body_rid: RID, _body: Node2D, _body_shape_index, _local_shape_index):
-	var layer_bitmap = PhysicsServer2D.body_get_collision_layer(body_rid)
-	if layer_bitmap & 1<<2:
-		if PLAYER_ID == 0:
-			get_tree().reload_current_scene()
-		else:
-			queue_free()
-	elif layer_bitmap & 1<<3:
-		Constants.load_next_level()
-	else:
-		print("Unknown physics layer bitmap: ", layer_bitmap)
+	$ContactBox.connect("body_entered", _on_body_entered)
+
+func _on_body_entered(body):
+	if body is Rocket:
+		body.explode()
 
 func _physics_process(delta):
 	if is_on_floor():
@@ -95,8 +79,9 @@ func _physics_process(delta):
 		velocity.y += GRAVITY * delta
 
 	if move_and_slide():
-		for ray in [$RayLeft, $RayRight]:
-			if ray.is_colliding():
-				var collider = ray.get_collider()
-				if collider.has_method("moving_platform_touched"):
-					collider.moving_platform_touched()
+		pass
+#		for ray in [$RayLeft, $RayRight]:
+#			if ray.is_colliding():
+#				var collider = ray.get_collider()
+#				if collider.has_method("moving_platform_touched"):
+#					collider.moving_platform_touched()

@@ -9,16 +9,19 @@ var ground := false
 func _ready():
 	$Animation.connect("animation_finished", finish)
 	connect("body_entered", check_if_hit)
+	connect("area_entered", check_if_hit)
 	$Animation.play("aerial")
 	for body in get_overlapping_bodies():
 		check_if_hit(body)
+	for area in get_overlapping_areas():
+		check_if_hit(area)
 
 func finish():
 	queue_free()
 
-func check_if_hit(body: Node2D):
-	print(body is Rocket)
-	if body is Player:
-		emit_signal("hit_player_by", body.PLAYER_ID, PLAYER_ID)
-	if body is Rocket:
-		emit_signal("hit_rocket", PLAYER_ID, body)
+func check_if_hit(collider: Node2D):
+	print(collider is Rocket)
+	if collider.get_parent() is Player:
+		emit_signal("hit_player_by", collider.get_parent().PLAYER_ID, PLAYER_ID)
+	if collider is Rocket:
+		emit_signal("hit_rocket", PLAYER_ID, collider)

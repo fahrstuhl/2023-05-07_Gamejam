@@ -11,13 +11,14 @@ var EXPLOSION = preload("res://explosion.tscn")
 
 func _ready():
 	print("Joypads: ", Input.get_connected_joypads())
-#	spawn_players()
-	spawn_rockets()
+	spawn_players()
+#	spawn_rockets()
 	
 func spawn_players():
 	for ID in Input.get_connected_joypads():
 		var player = PLAYER.instantiate()
 		player.PLAYER_ID = ID
+		player.global_position = Vector2(600,600)
 		var status = STATUS.instantiate()
 		status.PLAYER_ID = ID
 		$Level/Players.add_child(player)
@@ -52,7 +53,7 @@ func hit_rocket(id, rocket: Rocket):
 	rocket.explode()
 
 func _input(event):
-	if OS.is_debug_build() and event.is_action("toggle_collision_shapes") and event.pressed:
+	if OS.is_debug_build() and event.is_action("ui_toggle_collision_shapes") and event.pressed:
 		toggle_collision_shape_visibility()
 
 func toggle_collision_shape_visibility() -> void:

@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://bqnc1govxw356"]
 
 [ext_resource type="Script" path="res://rocket.gd" id="1_e6rdl"]
-[ext_resource type="Texture2D" uid="uid://csie1brcuxy8g" path="res://assets/towerDefense_tile251.png" id="1_s880v"]
-[ext_resource type="Texture2D" uid="uid://dayb58cjgvvti" path="res://assets/towerDefense_tile298.png" id="2_ldaq1"]
+[ext_resource type="Texture2D" uid="uid://xovubpurv5ed" path="res://assets/towerDefense_tile251.png" id="1_s880v"]
+[ext_resource type="Texture2D" uid="uid://ch6taqhxebh80" path="res://assets/towerDefense_tile298.png" id="2_ldaq1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hstq3"]
 radius = 4.0
 
 [node name="rocket" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 15
+collision_mask = 30
 motion_mode = 1
 script = ExtResource("1_e6rdl")
 
